@@ -15,8 +15,11 @@ def scrape():
 
     soup = BeautifulSoup(content, 'html.parser')
 
-    columns = soup.find_all('div', {'class': 'curation-module__zone'}) # return a list
-    print(len(columns))
+    posts = soup.find_all('div', {'class': 'zone__item'})  # return a list
 
-
+    for i in posts:
+        link = i.find_all('section', {'class': 'content-meta__headline__wrapper'})[1]
+        image_source = i.find('img', {'data-format': 'jpg'})['srcset']
+    print(link.text)
+    print((image_source))
 scrape()
