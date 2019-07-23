@@ -18,3 +18,11 @@ def create_view(request):
     }
 
     return render(request, 'create.html', context)
+
+
+def list_view(request):
+    notes = Note.objects.all()
+    context = {
+        'object_list': notes
+    }
+    return render(request, 'list.html', context)
