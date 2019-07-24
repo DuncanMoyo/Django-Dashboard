@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'notepad',
     'news',
     'finance',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
