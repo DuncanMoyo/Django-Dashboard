@@ -1,14 +1,11 @@
-from bs4 import BeautifulSoup
-from django.shortcuts import redirect, render
+from django.shortcuts import render
 import requests
-from .models import Headline, UserProfile
-from datetime import timezone, datetime
-import os
-import shutil
+from bs4 import BeautifulSoup
 
 requests.packages.urllib3.disable_warnings()
 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 def news_list(request):
     headlines = Headline.objects.all()
@@ -26,6 +23,9 @@ def scrape(request):
         user_p.last_scrape = datetime.now(timezone.utc)
         user_p.save()
 
+=======
+def scrape():
+>>>>>>> origin/master
     session = requests.Session()
     session.headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
                                      'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 '
@@ -46,6 +46,7 @@ def scrape(request):
         print(title)
         print(image_source)
 
+<<<<<<< HEAD
         '''
         ================
         This code that has been commented is not working
@@ -84,3 +85,7 @@ def scrape(request):
         new_headline.save()
 
     return redirect('/')
+=======
+
+scrape()
+>>>>>>> origin/master
