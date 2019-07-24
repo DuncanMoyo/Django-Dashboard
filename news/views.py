@@ -74,9 +74,6 @@ def scrape(request):
       #              f.write(chunk)
 
        #  current_image_absolute_path = os.path.abspath(local_filename)
-    #           for chunk in r.iter_content(chunk_size=1024):
-      #              f.write(chunk)
-
 #        shutil.move(current_image_absolute_path, media_root)
 
         # end of stackoverflow solution
@@ -87,5 +84,5 @@ def scrape(request):
         new_headline.image = image_source
         new_headline.save()
 
-    return redirect('/')
+    return redirect('/home/')
 
