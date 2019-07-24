@@ -63,19 +63,12 @@ def scrape(request):
         '''
 
         # stackoverflow solution
-
-#        if not image_source.startswith(("data:image", "javascript")):
- #           media_root = r"C:\Users\Interbiz\PycharmProjects\dashboard\media_root"
-  #          local_filename = image_source.split('/')[-1].split("?")[0]
-   #         r = session.get(image_source, stream=True, verify=False)
-
-  #           with open(local_filename, 'wb') as f:
-    #           for chunk in r.iter_content(chunk_size=1024):
-      #              f.write(chunk)
-
-       #  current_image_absolute_path = os.path.abspath(local_filename)
-#        shutil.move(current_image_absolute_path, media_root)
-
+        '''
+        =================================
+        CHECK PREVIOUS COMMITS
+        REMOVED AS IT KEPT RAISING ERRORS
+        =================================
+        '''
         # end of stackoverflow solution
 
         new_headline = Headline()
