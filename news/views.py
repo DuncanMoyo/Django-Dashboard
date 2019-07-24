@@ -1,11 +1,20 @@
-from django.shortcuts import render
-import requests
 from bs4 import BeautifulSoup
+from django.shortcuts import redirect, render
+import requests
+from .models import Headline, UserProfile
+from datetime import timezone, datetime
+import os
+import shutil
 
 requests.packages.urllib3.disable_warnings()
 
 
-def scrape():
+def scrape(request):
+    user_p = UserProfile.objects.filter(user=request.user).first()
+    if user_p is not None:
+        user_p.last_scrape = datetime.now(timezone.utc)
+        user_p.save()
+
     session = requests.Session()
     session.headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
                                      'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 '
@@ -26,5 +35,28 @@ def scrape():
         print(title)
         print(image_source)
 
+        '''
+        ================
+        This code that has been commented is not working
+        will need to find another way to collect ever-changing images
+        ================
+        
+        '''
 
-scrape()
+#        if not image_source.startswith(("data:image", "javascript")):
+ #           media_root = r"C:\Users\Interbiz\PycharmProjects\dashboard\media_root"
+  #          local_filename = image_source.split('/')[-1].split("?")[0]
+   #         r = session.get(image_source, stream=True, verify=False)
+    #           for chunk in r.iter_content(chunk_size=1024):
+      #              f.write(chunk)
+#        shutil.move(current_image_absolute_path, media_root)
+
+        # end of stackoverflow solution
+
+        new_headline = Headline()
+        new_headline.title = title
+        new_headline.url = link
+        new_headline.image = image_source
+        new_headline.save()
+
+    return redirect('/')
